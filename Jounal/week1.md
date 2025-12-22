@@ -37,7 +37,7 @@ So instead of traffic going openly over the internet, it goes through a protecte
 
 ### Now let’s walk through the traffic
 
-**Step 1: Smart TV makes a request**
+**- Step 1: Smart TV makes a request**
 
 Someone in House Brown opens the Jellyfin app on the Smart TV and selects a movie to watch.
 At this moment, the TV simply knows one thing: “I need to contact the Jellyfin server.”
@@ -45,7 +45,7 @@ So it creates a network request using its own IP address and a random source por
 
 The TV doesn’t care where the server physically is—it just sends the request like it would for any other service.
 
-**Step 2: Request goes to the home router**
+**- Step 2: Request goes to the home router**
 
 Since the Smart TV is part of the local home network, it always sends traffic to the home router first.
 The router looks at the destination IP and checks its routing table.
@@ -58,14 +58,14 @@ The traffic needs to be forwarded somewhere else
 
 So the router decides where to send the packet next.
 
-**Step 3: Router sends traffic to the white box**
+**- Step 3: Router sends traffic to the white box**
 
 The router knows that any traffic meant for the other house must go through the white box.
 So instead of sending it to the internet normally, it forwards the packet to the white box.
 
 You can think of the white box as a special exit door that knows how to reach the other house securely.
 
-**Step 4: Traffic goes through the VPN**
+**- Step 4: Traffic goes through the VPN**
 
 Once the white box receives the packet, it places it into the VPN tunnel.
 This is where security comes in.
@@ -80,7 +80,7 @@ At this stage:
 
 The packet now travels across the internet, but safely, as if it were inside a sealed pipe, until it reaches House Bayko.
 
-**Step 5: Other white box receives the traffic**
+**- Step 5: Other white box receives the traffic**
 
 On the Bayko side, the second white box receives the encrypted packet.
 It decrypts the traffic and checks the destination address.
@@ -91,7 +91,7 @@ It decrypts the traffic and checks the destination address.
 
 So it forwards the packet to the local router inside House Bayko.
 
-**Step 6: Traffic reaches the Jellyfin server**
+**- Step 6: Traffic reaches the Jellyfin server**
 
 The local router sends the packet to the Jellyfin server, which is running inside a Docker container and listening on port 8096.
 
